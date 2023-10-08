@@ -1,5 +1,9 @@
-<h1 *ngIf="!finishedAuthCheck()">
-    Loading
-</h1>
+<div class="container-fluid g-0">
 
-<router-outlet *ngIf="finishedAuthCheck()"/>
+    <h1 *ngIf="!finishedAuthCheck()">
+         <app-loading-overlay />
+    </h1>
+
+    <router-outlet *ngIf="finishedAuthCheck()"/>
+
+</div>

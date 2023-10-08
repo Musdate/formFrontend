@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2 justify-content-between">
+
+    <div>
+
+        <a class="navbar-brand px-4" [routerLink]="['/form/internal']" routerLinkActive="router-link-active" >Solicitud Interna</a>
+        <a class="navbar-brand px-4" [routerLink]="['/form/comercial']" routerLinkActive="router-link-active">Solicitud Comercial</a>
+        <a class="navbar-brand px-4" [routerLink]="['/form/generic']" routerLinkActive="router-link-active">Solicitud Genérica</a>
+        
+    </div>
+
+
+    <button class="navbar-brand px-4 d-flex" (click)="onLogout()">Cerrar Sesión</button>
+
+</nav>

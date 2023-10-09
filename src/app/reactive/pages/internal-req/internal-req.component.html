@@ -2,47 +2,106 @@
 
 <div class="container">
 
-    <h2>Solicitud Interna</h2>
-    <h6>
-        Esta Solicitud Entregara un vino que se encuentre en Stock.
-        En observaciones puede incluir información para seleccionar alguna alternativa disponible.
-    </h6>
-    <hr>
+    <div class="p-t-25">
+        <h2>Solicitud Interna</h2>
+        <h6>
+            Esta Solicitud Entregara un vino que se encuentre en Stock.
+            En observaciones puede incluir información para seleccionar alguna alternativa disponible.
+        </h6>
+        <hr>
+    </div>
 
     <div class="row">
         <div class="col">
 
-            <form autocomplete="off">
+            <form [formGroup]="internalForm" (ngSubmit)="onSave()" autocomplete="off">
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Producto</label>
+                    <label class="col-sm-3 col-form-label">Producto / Marca:</label>
                     <div class="col-sm-9">
-
-                        <input type="text" class="form-control" placeholder="Nombre del producto">
-
-                        <span class="form-text text-danger">
-                            error message
+                        <input type="text" class="form-control" formControlName="producto" placeholder="Nombre del producto">
+                        <span *ngIf="isValidField('producto')" class="form-text text-danger">
+                            {{ getFieldError('producto') }}
                         </span>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Precio</label>
+                    <label class="col-sm-3 col-form-label">Cosecha:</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" placeholder="Precio del producto">
-                        <span class="form-text text-danger">
-                            error message
+                        <input type="text" class="form-control" formControlName="cosecha" placeholder="Cosecha del producto">
+                        <span *ngIf="isValidField('cosecha')" class="form-text text-danger">
+                            {{ getFieldError('cosecha') }}
                         </span>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Existencias</label>
+                    <label class="col-sm-3 col-form-label">Formato:</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" placeholder="Existencias del producto">
+                        <input type="text" class="form-control" formControlName="formato" placeholder="Formato del producto">
+                        <span *ngIf="isValidField('formato')" class="form-text text-danger">
+                            {{ getFieldError('formato') }}
+                        </span>
+                    </div>
+                </div>
 
-                        <span class="form-text text-danger">
-                            Las existencias deben de ser 0 o mayor
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Tipo Botella:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="tipoBotella" placeholder="Tipo Botella">
+                        <span *ngIf="isValidField('tipoBotella')" class="form-text text-danger">
+                            {{ getFieldError('tipoBotella') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Tipo de Cierre:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="tipoCierre" placeholder="Tipo de Cierre">
+                        <span *ngIf="isValidField('tipoCierre')" class="form-text text-danger">
+                            {{ getFieldError('tipoCierre') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Etiqueta:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="etiqueta" placeholder="Etiqueta del producto">
+                        <span *ngIf="isValidField('etiqueta')" class="form-text text-danger">
+                            {{ getFieldError('etiqueta') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Contra Etiquetas:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="contraEtiquetas" placeholder="Contra Etiquetas">
+                        <span *ngIf="isValidField('contraEtiquetas')" class="form-text text-danger">
+                            {{ getFieldError('contraEtiquetas') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Cantidad:</label>
+                    <div class="col-sm-9">
+                        <input type="number" class="form-control" formControlName="cantidad" placeholder="Cantidad">
+                        <span *ngIf="isValidField('cantidad')" class="form-text text-danger">
+                            La Cantidad debe ser mayor a cero
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Observaciones:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="observaciones" placeholder="Observaciones">
+                        <span *ngIf="isValidField('observaciones')" class="form-text text-danger">
+                            {{ getFieldError('observaciones') }}
                         </span>
                     </div>
                 </div>
@@ -59,30 +118,5 @@
 
         </div>
     </div>
-
-    <!-- 
-    <div class="row">
-        <div class="col">
-
-            <span>Valid</span>
-            <pre>{{ 'objeto' | json }}</pre>
-
-            <span>Pristine</span>
-            <pre>{{ 'objeto' | json }}</pre>
-
-            <span>Touched</span>
-            <pre>{{ 'objeto' | json }}</pre>
-
-            <span>Value</span>
-            <pre>{{ 'objeto' | json }}</pre>
-
-            <span>Precio</span>
-            <pre>{{ 'objeto' | json }}</pre>
-
-            <span>Producto</span>
-            <pre>{{ 'objeto' | json }}</pre>
-        </div>
-    </div>
-    -->
 
 </div>

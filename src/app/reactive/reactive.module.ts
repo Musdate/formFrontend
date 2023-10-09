@@ -6,6 +6,7 @@ import { InternalReqComponent } from './pages/internal-req/internal-req.componen
 import { ComercialReqComponent } from './pages/comercial-req/comercial-req.component';
 import { GenericReqComponent } from './pages/generic-req/generic-req.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

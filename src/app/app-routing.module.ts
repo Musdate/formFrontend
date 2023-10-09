@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'form',
-    // canActivate: [ isAuthenticatedGuard ],
+    canActivate: [ isAuthenticatedGuard ],
     loadChildren: () => import('./reactive/reactive.module').then( m => m.ReactiveModule )
   },
   {

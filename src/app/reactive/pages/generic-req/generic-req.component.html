@@ -1,108 +1,82 @@
 <app-nav-bar />
 
 <div class="container">
-    <h2>Solicitud Generica</h2>
-    <h6>
-        Esta Solicitud Entregara un vino que se encuentre en Stock.
-        En observaciones puede incluir información para seleccionar alguna alternativa disponible.
-    </h6>
-    <hr>
+
+    <div class="p-t-25">
+        <h2>Solicitud Genérica</h2>
+        <h6>
+            Esta Solicitud Entregara un vino que se encuentre en Stock.
+            En observaciones puede incluir información para seleccionar alguna alternativa disponible.
+        </h6>
+        <hr>
+    </div>
 
     <div class="row">
         <div class="col">
 
-            <form autocomplete="off">
+            <form [formGroup]="genericForm" (ngSubmit)="onSave()" autocomplete="off">
 
-                <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Nombre</label>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Solicitante:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" placeholder="Nombre del usuario">
-
-                        <span class="form-text text-danger">
-                            Debe de ser en formato de nombre y apellido
+                        <input type="text" class="form-control" formControlName="solicitante" placeholder="Solicitante">
+                        <span *ngIf="isValidField('solicitante')" class="form-text text-danger">
+                            {{ getFieldError('solicitante') }}
                         </span>
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Email</label>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Producto / Vino:</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" placeholder="Email del usuario">
-                        <span class="form-text text-danger">
-                            mensaje de error del email
+                        <input type="text" class="form-control" formControlName="producto" placeholder="Producto / Vino">
+                        <span *ngIf="isValidField('producto')" class="form-text text-danger">
+                            {{ getFieldError('producto') }}
                         </span>
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Username</label>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Cuba o Mezcla:</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" placeholder="Nombre código del usuario">
-                        <span class="form-text text-danger">
-                            El username no puede ser Strider
+                        <input type="text" class="form-control" formControlName="cubaMezcla" placeholder="Cuba o Mezcla">
+                        <span *ngIf="isValidField('cubaMezcla')" class="form-text text-danger">
+                            {{ getFieldError('cubaMezcla') }}
                         </span>
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Password</label>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Fecha de Entrega:</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" placeholder="Password de su cuenta">
-
-                        <span class="form-text text-danger">
-                            La contraseña debe de ser mayor de 6 caracteres.
+                        <input type="text" class="form-control" formControlName="fechaEntrega" placeholder="Fecha de Entrega">
+                        <span *ngIf="isValidField('fechaEntrega')" class="form-text text-danger">
+                            {{ getFieldError('fechaEntrega') }}
                         </span>
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Confirmar</label>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Observaciones:</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" placeholder="Confirmar la contraseña">
-
-                        <span class="form-text text-danger">
-                            Las contraseñas deben de ser iguales
+                        <input type="text" class="form-control" formControlName="observaciones" placeholder="Observaciones">
+                        <span *ngIf="isValidField('observaciones')" class="form-text text-danger">
+                            {{ getFieldError('observaciones') }}
                         </span>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary float-end" type="submit">
-                            Crear
+                        <button type="submit" class="btn btn-primary float-end">
+                            Guardar
                         </button>
                     </div>
                 </div>
-
 
             </form>
 
         </div>
     </div>
-
-    <!-- 
-    <h2>Form Valid: </h2>
-    <h2>Form Status: </h2>
-    <h2>Form Pending: </h2>
-    <h2>Form errors</h2>
-    <pre>{{ 'formulario' | json }}</pre>
-
-    <h5>Nombre</h5>
-    <pre>{{ 'formulario' | json }}</pre>
-
-    <h5>Email</h5>
-    <pre>{{ 'formulario' | json }}</pre>
-
-    <h5>Username</h5>
-    <pre>{{ 'formulario' | json }}</pre>
-
-
-    <h5>Password</h5>
-    <pre>{{ 'formulario' | json }}</pre>
-
-    <h5>Confirmar</h5>
-    <pre>{{ 'formulario' | json }}</pre>
-    -->
 
 </div>

@@ -1,0 +1,30 @@
+@use '/src/variables.scss' as v;
+
+.nav-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-title {
+    display: none;
+}
+
+.nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 0;
+}
+
+@media ( min-width: v.$tablet ) {
+    .nav-items {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .nav-title {
+        display: block;
+    }
+}

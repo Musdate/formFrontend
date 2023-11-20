@@ -1,5 +1,17 @@
-<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid">
+<nav class="nav-main container">
+    <a [routerLink]="['/dashboard']">
+        <img src="../../../../assets/images/logo-crown.jpg" alt="Baron Philippe de Rothschild" width="64px" height="82px">
+    </a>
+    <a class="nav-title" [routerLink]="['/dashboard']">
+        <img src="../../../../assets/images/logo-name.jpg" alt="Baron Philippe de Rothschild" width="641px" height="25px">
+    </a>
+    <div class="nav-items">
+        <a class="btn-secondary" [routerLink]="['/form/internal']" routerLinkActive="btn-secondary-active">Solicitud Interna</a>
+        <a class="btn-secondary" [routerLink]="['/form/comercial']" routerLinkActive="btn-secondary-active">Solicitud Comercial</a>
+        <a class="btn-secondary" [routerLink]="['/form/generic']" routerLinkActive="btn-secondary-active">Solicitud Genérica</a>
+        <a class="btn-secondary" (click)="onLogout()">Cerrar Sesión</a>
+    </div>
+    <!-- <div class="container-fluid">
         <a class="navbar-brand" [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Icono</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,7 +30,7 @@
             </ul>
             <a class="navbar-brand d-flex ms-auto" style="cursor: pointer;" (click)="onLogout()">Cerrar Sesión</a>
         </div>
-    </div>
+    </div> -->
 </nav>
   
 <!-- <nav class="navbar navbar-expand navbar-dark bg-dark px-2 justify-content-between">

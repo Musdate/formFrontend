@@ -1,0 +1,7 @@
+@use '/src/variables.scss' as v;
+
+.dashboard-row {
+    background-color: v.$secundario;
+    height: 250px;
+    width: 100%;
+}

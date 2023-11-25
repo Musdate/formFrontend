@@ -1,82 +1,62 @@
 <app-nav-bar />
 
-<div class="container m-t-60">
-
-    <div class="p-t-25">
+<div class="form-banner">
+    <div class="container">
         <h2>Solicitud Genérica</h2>
-        <h6>
+        <p>
             Esta Solicitud Entregara un vino que se encuentre en Stock.
             En observaciones puede incluir información para seleccionar alguna alternativa disponible.
-        </h6>
-        <hr>
+        </p>
     </div>
-
-    <div class="row">
-        <div class="col">
-
-            <form [formGroup]="genericForm" (ngSubmit)="onSave()" autocomplete="off">
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Solicitante:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="solicitante" placeholder="Solicitante">
-                        <span *ngIf="isValidField('solicitante')" class="form-text text-danger">
-                            {{ getFieldError('solicitante') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Producto / Vino:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="producto" placeholder="Producto / Vino">
-                        <span *ngIf="isValidField('producto')" class="form-text text-danger">
-                            {{ getFieldError('producto') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Cuba o Mezcla:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="cubaMezcla" placeholder="Cuba o Mezcla">
-                        <span *ngIf="isValidField('cubaMezcla')" class="form-text text-danger">
-                            {{ getFieldError('cubaMezcla') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Fecha de Entrega:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="fechaEntrega" placeholder="Fecha de Entrega">
-                        <span *ngIf="isValidField('fechaEntrega')" class="form-text text-danger">
-                            {{ getFieldError('fechaEntrega') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Observaciones:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="observaciones" placeholder="Observaciones">
-                        <span *ngIf="isValidField('observaciones')" class="form-text text-danger">
-                            {{ getFieldError('observaciones') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary float-end">
-                            Guardar
-                        </button>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-
 </div>
+
+<form class="formulario container" [formGroup]="genericForm" (ngSubmit)="onSave()" autocomplete="off">
+
+    <fieldset>
+        <legend>Datos</legend>
+
+        <div class="campo">
+            <label for="solicitante">Solicitante: </label>
+            <div class="campo-interno">
+                <input id="solicitante" type="text" formControlName="solicitante" placeholder="Solicitante">
+                <span *ngIf="isValidField('solicitante')" class="text-danger">
+                    {{ getFieldError('solicitante') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="producto">Producto / Vino: </label>
+            <div class="campo-interno">
+                <input id="producto" type="text" formControlName="producto" placeholder="Producto / Vino">
+                <span *ngIf="isValidField('producto')" class="text-danger">
+                    {{ getFieldError('producto') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="fechaEntrega">Fecha de Entrega: </label>
+            <div class="campo-interno">
+                <input id="fechaEntrega" type="date" formControlName="fechaEntrega" placeholder="Fecha de Entrega">
+                <span *ngIf="isValidField('fechaEntrega')" class="text-danger">
+                    {{ getFieldError('fechaEntrega') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="observaciones">Observaciones: </label>
+            <div class="campo-interno">
+                <textarea id="observaciones" type="text" formControlName="observaciones" placeholder="Observaciones" cols="20" rows="10"></textarea>
+                <span *ngIf="isValidField('observaciones')" class="text-danger">
+                    {{ getFieldError('observaciones') }}
+                </span>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <input class="btn btn-form" type="submit" value="Enviar">
+
+</form>

@@ -1,112 +1,102 @@
 <app-nav-bar />
 
-<div class="container">
-
-    <div class="p-t-25 m-t-60">
+<div class="form-banner">
+    <div class="container">
         <h2>Solicitud Comercial</h2>
-        <h6>
+        <p>
             Esta Solicitud Entregara un vino que se encuentre en Stock.
             En observaciones puede incluir información para seleccionar alguna alternativa disponible.
-        </h6>
-        <hr>
+        </p>
     </div>
-
-    <div class="row">
-        <div class="col">
-
-            <form [formGroup]="comercialForm" (ngSubmit)="onSave()" autocomplete="off">
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Nombre / Razón Social:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre o Razón Social">
-                        <span *ngIf="isValidField('nombre')" class="form-text text-danger">
-                            {{ getFieldError('nombre') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Dirección:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="direccion" placeholder="Dirección">
-                        <span *ngIf="isValidField('direccion')" class="form-text text-danger">
-                            {{ getFieldError('direccion') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">País:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="pais" placeholder="País">
-                        <span *ngIf="isValidField('pais')" class="form-text text-danger">
-                            {{ getFieldError('pais') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Ciudad y Comuna:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="ciudadComuna" placeholder="Ciudad y Comuna">
-                        <span *ngIf="isValidField('ciudadComuna')" class="form-text text-danger">
-                            {{ getFieldError('ciudadComuna') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Atención A:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="atencion" placeholder="Atención A">
-                        <span *ngIf="isValidField('atencion')" class="form-text text-danger">
-                            {{ getFieldError('atencion') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Fono:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="fono" placeholder="Fono">
-                        <span *ngIf="isValidField('fono')" class="form-text text-danger">
-                            {{ getFieldError('fono') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Email:</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" formControlName="email" placeholder="Email">
-                        <span *ngIf="isValidField('email')" class="form-text text-danger">
-                            {{ getFieldError('email') }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Despachado por:</label>
-                    <div class="col-sm-9">
-                        <input type="number" class="form-control" formControlName="despachadoPor" placeholder="Despachado por">
-                        <span *ngIf="isValidField('despachadoPor')" class="form-text text-danger">
-                            La Cantidad debe ser mayor a cero
-                        </span>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary float-end">
-                            Guardar
-                        </button>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-
 </div>
+
+<form class="formulario container" [formGroup]="comercialForm" (ngSubmit)="onSave()" autocomplete="off">
+
+    <fieldset>
+        <legend>Datos</legend>
+
+        <div class="campo">
+            <label for="nombre">Nombre / Razón Social: </label>
+            <div class="campo-interno">
+                <input id="nombre" type="text" formControlName="nombre" placeholder="Nombre o Razón Social">
+                <span *ngIf="isValidField('nombre')" class="text-danger">
+                    {{ getFieldError('nombre') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="direccion">Dirección: </label>
+            <div class="campo-interno">
+                <input id="direccion" type="text" formControlName="direccion" placeholder="Dirección">
+                <span *ngIf="isValidField('direccion')" class="text-danger">
+                    {{ getFieldError('direccion') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="pais">País: </label>
+            <div class="campo-interno">
+                <input id="pais" type="text" formControlName="pais" placeholder="País">
+                <span *ngIf="isValidField('pais')" class="text-danger">
+                    {{ getFieldError('pais') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="ciudadComuna">Ciudad y Comuna: </label>
+            <div class="campo-interno">
+                <input id="ciudadComuna" type="text" formControlName="ciudadComuna" placeholder="Ciudad y Comuna">
+                <span *ngIf="isValidField('ciudadComuna')" class="text-danger">
+                    {{ getFieldError('ciudadComuna') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="atencion">Atención A: </label>
+            <div class="campo-interno">
+                <input id="atencion" type="text" formControlName="atencion" placeholder="Atención A">
+                <span *ngIf="isValidField('atencion')" class="text-danger">
+                    {{ getFieldError('atencion') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="fono">Fono: </label>
+            <div class="campo-interno">
+                <input id="fono" type="tel" formControlName="fono" placeholder="Fono">
+                <span *ngIf="isValidField('fono')" class="text-danger">
+                    {{ getFieldError('fono') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="email">Email: </label>
+            <div class="campo-interno">
+                <input id="email" type="email" formControlName="email" placeholder="Email">
+                <span *ngIf="isValidField('email')" class="text-danger">
+                    La email debe ser mayor a cero
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="despachadoPor">Despachado por: </label>
+            <div class="campo-interno">
+                <input id="despachadoPor" type="text" formControlName="despachadoPor" placeholder="Despachado por">
+                <span *ngIf="isValidField('despachadoPor')" class="text-danger">
+                    {{ getFieldError('despachadoPor') }}
+                </span>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <input class="btn btn-form" type="submit" value="Enviar">
+
+</form>

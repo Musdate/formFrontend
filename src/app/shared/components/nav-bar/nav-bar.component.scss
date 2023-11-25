@@ -18,10 +18,18 @@
     padding: 2rem 0;
 }
 
+.nav-items a {
+    width: 100%;
+}
+
 @media ( min-width: v.$tablet ) {
     .nav-items {
         flex-direction: row;
         justify-content: center;
+    }
+
+    .nav-items a {
+        width: unset;
     }
 
     .nav-title {

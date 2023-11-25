@@ -69,8 +69,12 @@ img {
   text-align: center;
 }
 
-.bg-primario {
+.bg-primary {
   background-color: v.$primario;
+}
+
+.bg-secondary {
+  background-color: v.$secundario;
 }
 
 .container {
@@ -81,10 +85,9 @@ img {
 
 .btn {
   background-color: v.$primario;
-  color: #FFFFFF;
+  color: v.$blanco;
   display: block;
-  text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 800;
   padding: 1rem;
   transition: background-color .3s ease-out;
   text-align: center;
@@ -93,7 +96,7 @@ img {
 }
 
 .btn:hover {
-  background-color: #769c02;
+  background-color: #1c6bc9;
   cursor: pointer;
 }
 
@@ -116,21 +119,6 @@ img {
   cursor: pointer;
 }
 
-.max-w-150 {
-  max-width: 150rem;
-}
-
 .m-a {
   margin: 0 auto;
-}
-
-@media ( min-width: 768px ) {
-
-  .max-width-30 {
-    max-width: 30rem;
-  }
-
-  .btn {
-    width: auto;
-  }
 }

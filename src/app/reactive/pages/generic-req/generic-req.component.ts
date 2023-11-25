@@ -10,7 +10,8 @@ const defaultForm = {
 };
 
 @Component({
-  templateUrl: './generic-req.component.html'
+  templateUrl: './generic-req.component.html',
+  styleUrls: ['../../styles/form-styles.scss']
 })
 export class GenericReqComponent {
 

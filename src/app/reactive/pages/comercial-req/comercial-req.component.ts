@@ -14,7 +14,7 @@ const defaultForm = {
 
 @Component({
   templateUrl: './comercial-req.component.html',
-  styleUrls: ['../../styles/form-styles.scss']
+  styleUrls: ['../../layouts/request-layout/request-layout.component.scss']
 })
 export class ComercialReqComponent {
 

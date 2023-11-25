@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './loading-overlay.component.html',
   styleUrls: ['./loading-overlay.component.scss']
 })
-export class LoadingOverlayComponent {
-
-}
+export class LoadingOverlayComponent { }

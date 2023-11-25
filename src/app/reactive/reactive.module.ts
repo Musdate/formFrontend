@@ -7,13 +7,15 @@ import { ComercialReqComponent } from './pages/comercial-req/comercial-req.compo
 import { GenericReqComponent } from './pages/generic-req/generic-req.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RequestLayoutComponent } from './layouts/request-layout/request-layout.component';
 
 
 @NgModule({
   declarations: [
     InternalReqComponent,
     ComercialReqComponent,
-    GenericReqComponent
+    GenericReqComponent,
+    RequestLayoutComponent
   ],
   imports: [
     CommonModule,

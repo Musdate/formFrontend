@@ -1,7 +1,8 @@
-@use '/src/variables.scss' as v;
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+}
 
-.dashboard-row {
-    background-color: v.$secundario;
-    height: 250px;
-    width: 100%;
+.dashboard-content {
+    flex-grow: 1;
 }

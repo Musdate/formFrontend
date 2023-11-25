@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     NavBarComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }

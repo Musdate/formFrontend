@@ -15,7 +15,7 @@ const defaultForm = {
 
 @Component({
   templateUrl: './internal-req.component.html',
-  styleUrls: ['../../styles/form-styles.scss']
+  styleUrls: ['../../layouts/request-layout/request-layout.component.scss']
 })
 export class InternalReqComponent implements OnInit {
 

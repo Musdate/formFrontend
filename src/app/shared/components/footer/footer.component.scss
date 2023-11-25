@@ -1,0 +1,33 @@
+@use '/src/variables.scss' as v;
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  height: 18rem;
+  margin: 5rem 0 0 0;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  background-color: #dad0ba;
+  height: 4rem;
+}
+
+.footer-top-link {
+  margin: 0 1rem;
+  color: v.$negro;
+}
+
+.footer-top-link:hover {
+  color: v.$hover_link;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: v.$secundario;
+  height: 100%;
+}

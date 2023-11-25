@@ -1,0 +1,74 @@
+@use '/src/variables.scss' as v;
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+.contenido-principal {
+    display: grid;
+    padding: 5rem 0 0 0;
+}
+
+.form-banner {
+    display: flex;
+    background-color: v.$secundario;
+    height: 25rem;
+    align-items: center;
+    margin: 0 0 2rem 0;
+}
+
+.formulario {
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+.formulario fieldset {
+    border: 1px solid v.$negro;
+    margin: 0 0 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 0;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 2rem 0;
+}
+
+.campo input:not( [type="radio"] ),
+.campo textarea,
+.campo select {
+    flex: 1;
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+}
+
+.campo-interno {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.btn-form {
+    margin: 2rem 0;
+}
+
+@media ( min-width: v.$tablet ) {
+
+    .formulario {
+        max-width: 120rem;
+    }
+
+    .campo {
+        flex-direction: row;
+    }
+
+    .campo label {
+        flex-basis: 12rem;
+    }
+
+}

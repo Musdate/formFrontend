@@ -12,7 +12,7 @@ h2 {
 .form-banner {
     display: flex;
     background-color: v.$secundario;
-    height: 25rem;
+    min-height: 25rem;
     align-items: center;
     margin: 0 0 2rem 0;
 }

@@ -22,6 +22,16 @@ h2 {
     margin: 0 auto;
 }
 
+.formulario legend {
+    background-color: #675145;
+    color: v.$blanco;
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+}
+
 .formulario fieldset {
     border: 1px solid v.$negro;
     margin: 0 0 2rem 0;
@@ -47,6 +57,14 @@ h2 {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+}
+
+.campo-radio {
+    margin: 0 2rem 0 0;
+}
+
+.campo-radio-input {
+    margin: 0 1rem 0 0;
 }
 
 .text-danger {

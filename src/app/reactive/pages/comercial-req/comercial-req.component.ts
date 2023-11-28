@@ -1,15 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ComercialService } from '../../services/comercial.service';
+import Swal from 'sweetalert2';
 
 const defaultForm = {
-  nombre: '',
-  direccion: '',
-  pais: '',
-  ciudadComuna: '',
-  atencion: '',
-  fono: '',
-  email: '',
-  despachadoPor: ''
+  producto: '',
+  cantidad: 0,
+  formatoBotella: '',
+  tipoVino: '',
+  anioCosecha: '',
+  cepa: '',
+  tipoCierre: '',
+  etiqueta: '',
+  fechaEnvio: '',
+  centroCosto: '',
+  cuentaContable: '',
+  conceptos: '',
+  tipoEmbalaje: '',
+  clienteNombre: '',
+  clienteFono: '',
+  clienteEmail: '',
+  clientePais: '',
+  clienteDireccion: '',
+  despachoTransporte: '',
+  despachoRetira: '',
+  despachoAwb: '',
+  despachoCosto: 0,
 };
 
 @Component({
@@ -19,15 +35,31 @@ const defaultForm = {
 export class ComercialReqComponent {
 
   public comercialForm: FormGroup = this.fb.group({
-    nombre:         ['', [ Validators.required, Validators.minLength(3) ], []],
-    direccion:      ['', [ Validators.required, Validators.minLength(3) ], []],
-    pais:           ['', [ Validators.required, Validators.minLength(3) ], []],
-    ciudadComuna:   ['', [ Validators.required, Validators.minLength(3) ], []],
-    atencion:       ['', [ Validators.required, Validators.minLength(3) ], []],
-    fono:           ['', [ Validators.required, Validators.minLength(3) ], []],
-    email:          ['', [ Validators.required, Validators.minLength(3) ], []],
-    despachadoPor:  ['', [ Validators.required, Validators.minLength(3) ], []]
+    producto: ['', [ Validators.required ], []],
+    cantidad: [0, [ Validators.required ], []],
+    formatoBotella: ['', [], []],
+    tipoVino: ['', [], []],
+    anioCosecha: ['', [], []],
+    cepa: ['', [], []],
+    tipoCierre: ['', [], []],
+    etiqueta: ['', [], []],
+    fechaEnvio: ['', [], []],
+    centroCosto: ['', [], []],
+    cuentaContable: ['', [], []],
+    conceptos: ['', [], []],
+    tipoEmbalaje: ['', [], []],
+    clienteNombre: ['', [], []],
+    clienteFono: ['', [], []],
+    clienteEmail: ['', [ Validators.email ], []],
+    clientePais: ['', [], []],
+    clienteDireccion: ['', [], []],
+    despachoTransporte: ['', [], []],
+    despachoRetira: ['', [], []],
+    despachoAwb: ['', [], []],
+    despachoCosto: [0, [], []],
   });
+
+  private ComercialService = inject( ComercialService );
 
   constructor ( private fb: FormBuilder ) { }
 
@@ -40,9 +72,12 @@ export class ComercialReqComponent {
   }
 
   getFieldError( field: string ): string | null {
+
     if ( !this.comercialForm.controls[field] ) return null;
 
     const errors = this.comercialForm.controls[field].errors || {};
+
+    document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
 
     for (const key of Object.keys(errors)) {
       switch(key) {
@@ -63,9 +98,28 @@ export class ComercialReqComponent {
       return;
     };
 
-    console.log(this.comercialForm.value);
+    this.ComercialService.onSave(this.comercialForm.value).subscribe({
+      next: () => {
+        Swal.fire({
+          position: "top-end",
+          title: 'Solicitud Enviada',
+          showConfirmButton: false,
+          icon: 'success',
+          timerProgressBar: true,
+          timer: 1500,
+          didClose: () => window.scrollTo({ top: 0 })
+        });
+      },
+      error: (message) => {
+        Swal.fire({
+          title: 'Error',
+          text: message,
+          icon: 'error'
+        });
+      }
+    });
 
     this.comercialForm.reset(defaultForm);
+
   }
-  
 }

@@ -1,11 +1,13 @@
 .backgroundImage {
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-image: url('../../../../assets/images/background-loading.png'), linear-gradient(to right, #8b8969 0%, #8e8a74 50%, #9d9a88 75%, #99937a 100%);
+  align-items: center;
+  background-image: url('../../../../assets/images/background-vinieda.jpg'),
+  linear-gradient(to right, #8b8969 0%, #8e8a74 50%, #9d9a88 75%, #99937a 100%);
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  background-position: center;
 }
 
 .lds-ring {

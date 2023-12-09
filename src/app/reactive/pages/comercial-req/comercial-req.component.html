@@ -14,14 +14,27 @@
 
         <legend>Datos del Producto</legend>
 
-        <div class="campo">
-            <label for="nombre">Producto / Marca: </label>
-            <div class="campo-interno">
-                <input id="producto" type="text" formControlName="producto" placeholder="Nombre del producto">
-                <span *ngIf="isValidField('producto')" class="text-danger">
-                    {{ getFieldError('producto') }}
+        <div formArrayName="productos">
+
+            <div class="campo-array" *ngFor="let producto of productos.controls; let i = index">
+
+                <div class="campo">
+                    <label for="nombre">Producto / Marca: </label>
+                    <div class="campo-interno">
+                        <input id="producto" type="text" [formControl]="newProducto" [formControlName]="i" placeholder="Nombre del producto">
+                        <button class="btn-add" (click)="onAddProducto()" *ngIf="i == 0; else tagElimina">+</button>
+                        <ng-template #tagElimina>
+                            <button class="btn-add" (click)="onDeleteProducto(i)" *ngIf="i > 0">-</button>
+                        </ng-template>
+                    </div>
+                </div>
+                <span class="text-danger notify-text" *ngIf="isValidFieldInArray(productos, i)">
+                    <!-- {{ getFieldError('producto') }} -->
+                    Este campo es requerido
                 </span>
+
             </div>
+
         </div>
 
         <div class="campo">

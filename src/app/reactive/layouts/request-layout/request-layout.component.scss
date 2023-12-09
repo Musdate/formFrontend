@@ -29,20 +29,18 @@ h2 {
     text-align: center;
     font-weight: 700;
     padding: 1rem;
-    margin: 0 0 1rem 0;
 }
 
 .formulario fieldset {
     border: 1px solid v.$negro;
     margin: 0 0 2rem 0;
-    padding-top: 2rem;
-    padding-bottom: 0;
+    padding: 1rem;
 }
 
 .campo {
     display: flex;
     flex-direction: column;
-    margin: 0 0 2rem 0;
+    margin: 2rem 0 0 0;
 }
 
 .campo input:not( [type="radio"] ),
@@ -55,8 +53,8 @@ h2 {
 
 .campo-interno {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
+    height: 6rem;
 }
 
 .campo-radio {
@@ -75,6 +73,33 @@ h2 {
     margin: 2rem 0;
 }
 
+.btn-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$primario;
+    color: v.$blanco;
+    // display: block;
+    // font-weight: 800;
+    font-size: 5rem;
+    padding: 1rem;
+    transition: background-color .3s ease-out;
+    text-align: center;
+    border: none;
+    width: 6rem;
+    height: 6rem;
+}
+
+.btn-add:hover {
+    background-color: #1c6bc9;
+    cursor: pointer;
+}
+
+.campo-array {
+    display: flex;
+    flex-direction: column;
+}
+
 @media ( min-width: v.$tablet ) {
 
     .formulario {
@@ -86,7 +111,12 @@ h2 {
     }
 
     .campo label {
-        flex-basis: 12rem;
+        width: 13rem;
+        padding: 0 1rem 0 0;
+    }
+
+    .notify-text {
+        margin: 0 0 0 13rem;
     }
 
 }

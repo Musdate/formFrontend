@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComercialService } from '../../services/comercial.service';
 import Swal from 'sweetalert2';
 
 const defaultForm = {
-  producto: '',
+  productos: [''],
   cantidad: 0,
   formatoBotella: '',
   tipoVino: '',
@@ -35,7 +35,9 @@ const defaultForm = {
 export class ComercialReqComponent {
 
   public comercialForm: FormGroup = this.fb.group({
-    producto: ['', [ Validators.required ], []],
+    productos: this.fb.array([
+      ['', [ Validators.required ], []],
+    ]),
     cantidad: [0, [ Validators.required ], []],
     formatoBotella: ['', [], []],
     tipoVino: ['', [], []],
@@ -61,14 +63,24 @@ export class ComercialReqComponent {
 
   private ComercialService = inject( ComercialService );
 
+  public newProducto: FormControl = new FormControl('', [ Validators.required ] );
+
   constructor ( private fb: FormBuilder ) { }
 
   ngOnInit(): void {
     this.comercialForm.reset(defaultForm);
   }
 
+  get productos() {
+    return this.comercialForm.get('productos') as FormArray;
+  }
+
   isValidField( field: string ): boolean | null {
     return this.comercialForm.controls[field].errors && this.comercialForm.controls[field].touched;
+  }
+
+  isValidFieldInArray( formArray: FormArray, i: number ) {
+    return formArray.controls[i].errors && formArray.controls[i].touched;
   }
 
   getFieldError( field: string ): string | null {
@@ -91,6 +103,24 @@ export class ComercialReqComponent {
     return null;
   }
 
+  onAddProducto():void {
+
+    // if( this.newProducto.invalid ) return;
+
+    const newProd = this.newProducto.value;
+    
+    this.productos.push(
+      this.fb.control( newProd, Validators.required )
+    );
+
+    this.newProducto.reset();
+
+  }
+
+  onDeleteProducto( i: number ):void {
+    this.productos.removeAt(i);
+  }
+
   onSave():void {
 
     if ( this.comercialForm.invalid ) {
@@ -98,28 +128,30 @@ export class ComercialReqComponent {
       return;
     };
 
-    this.ComercialService.onSave(this.comercialForm.value).subscribe({
-      next: () => {
-        Swal.fire({
-          position: "top-end",
-          title: 'Solicitud Enviada',
-          showConfirmButton: false,
-          icon: 'success',
-          timerProgressBar: true,
-          timer: 1500,
-          didClose: () => window.scrollTo({ top: 0 })
-        });
-      },
-      error: (message) => {
-        Swal.fire({
-          title: 'Error',
-          text: message,
-          icon: 'error'
-        });
-      }
-    });
+    console.log(this.comercialForm.value);
 
-    this.comercialForm.reset(defaultForm);
+    // this.ComercialService.onSave(this.comercialForm.value).subscribe({
+    //   next: () => {
+    //     Swal.fire({
+    //       position: "top-end",
+    //       title: 'Solicitud Enviada',
+    //       showConfirmButton: false,
+    //       icon: 'success',
+    //       timerProgressBar: true,
+    //       timer: 1500,
+    //       didClose: () => window.scrollTo({ top: 0 })
+    //     });
+    //   },
+    //   error: (message) => {
+    //     Swal.fire({
+    //       title: 'Error',
+    //       text: message,
+    //       icon: 'error'
+    //     });
+    //   }
+    // });
+
+    // this.comercialForm.reset(defaultForm);
 
   }
 }

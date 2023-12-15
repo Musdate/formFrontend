@@ -1,0 +1,18 @@
+<div class="form-banner">
+    <div class="container">
+        <h2>Consulta de Historial</h2>
+        <p>
+            Esta Consulta Entregara las solicitudes realizadas.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+
+    <div *ngFor="let comercial of history">
+
+        <app-card [comercial]="comercial" />
+    
+    </div>
+
+</div>

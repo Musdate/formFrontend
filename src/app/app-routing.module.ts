@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./reactive/reactive.module').then( m => m.ReactiveModule )
   },
   {
+    path: 'history',
+    // canActivate: [ isAuthenticatedGuard ],
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryModule )
+  },
+  {
     path: '**',
     redirectTo: 'auth'
   }

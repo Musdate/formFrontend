@@ -1,0 +1,9 @@
+@use '/src/variables.scss' as v;
+
+.form-banner {
+    display: flex;
+    background-color: v.$secundario;
+    min-height: 25rem;
+    align-items: center;
+    margin: 0 0 2rem 0;
+}

@@ -66,7 +66,7 @@ h2 {
 }
 
 .text-danger {
-    color: #dc3545;
+    color: v.$danger;
 }
 
 .btn-form {
@@ -98,6 +98,48 @@ h2 {
 .campo-array {
     display: flex;
     flex-direction: column;
+    border: 1px solid v.$secundario;
+    padding: 1rem;
+}
+
+.prod-btn {
+    color: v.$negro;
+}
+
+.prod-btn:hover {
+    color: v.$hover_link;
+    cursor: pointer;
+}
+
+
+.btn-del {
+    color: v.$negro;
+    margin: 0 0 0 2rem;
+}
+
+.btn-del:hover {
+    color: v.$danger;
+    cursor: pointer;
+}
+
+.prod-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem 1rem 0;
+}
+
+.close-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem 0 0;
+}
+
+.close-row:hover {
+  cursor: pointer;
+}
+
+.title-row {
+    font-weight: 700;
 }
 
 @media ( min-width: v.$tablet ) {

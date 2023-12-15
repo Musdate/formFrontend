@@ -1,13 +1,9 @@
+import { Product } from "./product.interface";
+
 export interface ComercialRequest {
     _id:                string;
-    producto:           string;
-    cantidad:           number;
-    formatoBotella:     string;
-    tipoVino:           string;
-    anioCosecha:        string;
-    cepa:               string;
-    tipoCierre:         string;
-    etiqueta:           string;
+    nombreSolicitud:    string;
+    productos:          Product[];
     fechaEnvio:         string;
     centroCosto:        string;
     cuentaContable:     string;

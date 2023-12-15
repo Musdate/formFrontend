@@ -4,14 +4,16 @@ import { ComercialService } from '../../services/comercial.service';
 import Swal from 'sweetalert2';
 
 const defaultForm = {
-  productos: [''],
-  cantidad: 0,
-  formatoBotella: '',
-  tipoVino: '',
-  anioCosecha: '',
-  cepa: '',
-  tipoCierre: '',
-  etiqueta: '',
+  nombreSolicitud: '',
+  productos: [{
+    cantidad: 0,
+    formatoBotella: '',
+    tipoVino: '',
+    anioCosecha: '',
+    cepa: '',
+    tipoCierre: '',
+    etiqueta: '',
+  }],
   fechaEnvio: '',
   centroCosto: '',
   cuentaContable: '',
@@ -33,18 +35,12 @@ const defaultForm = {
   styleUrls: ['../../layouts/request-layout/request-layout.component.scss']
 })
 export class ComercialReqComponent {
+  
+  public panelExpanded: boolean[] = [true];
 
   public comercialForm: FormGroup = this.fb.group({
-    productos: this.fb.array([
-      ['', [ Validators.required ], []],
-    ]),
-    cantidad: [0, [ Validators.required ], []],
-    formatoBotella: ['', [], []],
-    tipoVino: ['', [], []],
-    anioCosecha: ['', [], []],
-    cepa: ['', [], []],
-    tipoCierre: ['', [], []],
-    etiqueta: ['', [], []],
+    nombreSolicitud: ['', [], []],
+    productos: this.fb.array([]),
     fechaEnvio: ['', [], []],
     centroCosto: ['', [], []],
     cuentaContable: ['', [], []],
@@ -61,14 +57,37 @@ export class ComercialReqComponent {
     despachoCosto: [0, [], []],
   });
 
-  private ComercialService = inject( ComercialService );
+  public productsList = [
+    {id: 'ER_Icone', desc: 'Escudo Rojo Icone'},
+    {id: 'ER_Origine', desc: 'Escudo Rojo Origine'},
+    {id: 'ER_Grande_R', desc: 'Escudo Rojo Grande Réserve'},
+    {id: 'ER_Reserve', desc: 'Escudo Rojo Réserve'},
+    {id: 'Mapu_GR', desc: 'Mapu Gran Reserva'},
+    {id: 'Mapu_R', desc: 'Mapu Reserva'},
+    {id: 'Mapu', desc: 'Mapu'},
+    {id: 'Andes_GR', desc: 'Mas Andes Gran Reserva'},
+    {id: 'Andes_R', desc: 'Mas Andes Reserva < Cambio'},
+    {id: 'Andes', desc: 'Mas Andes'},
+    {id: 'Anderra', desc: 'Anderra'},
+    {id: 'Reserva', desc: 'Reserva'},
+    {id: 'Reserva_E', desc: 'Reserva Especial'},
+    {id: 'Mapa_R', desc: 'Mapa Reserva'},
+    {id: 'Mapa', desc: 'Mapa'},
+    {id: 'Varietal_B', desc: 'Varietal Beige'},
+    {id: 'ND_Andes', desc: 'ND23 Mas Andes'},
+    {id: 'ND_Andes_R', desc: 'ND23 Mas Andes Reserva'},
+    {id: 'ND_Andes_GR', desc: 'ND23 Mas Andes Gran Reserva'},
+    {id: 'ND_Andes_PLTO', desc: 'ND23 Mas Andes PLTO'}
+  ];
 
-  public newProducto: FormControl = new FormControl('', [ Validators.required ] );
+  private ComercialService = inject( ComercialService );
 
   constructor ( private fb: FormBuilder ) { }
 
   ngOnInit(): void {
     this.comercialForm.reset(defaultForm);
+    this.comercialForm.controls['nombreSolicitud'].setValue(this.buildDate())
+    this.productos.push(this.getNewProduct());
   }
 
   get productos() {
@@ -103,55 +122,74 @@ export class ComercialReqComponent {
     return null;
   }
 
+  getNewProduct() {
+    return this.fb.group({
+      producto: ['', [], []],
+      cantidad: [0, [ Validators.required ], []],
+      formatoBotella: ['', [], []],
+      tipoVino: ['', [], []],
+      anioCosecha: ['', [], []],
+      cepa: ['', [], []],
+      tipoCierre: ['', [], []],
+      etiqueta: ['', [], []],
+    })
+  }
+
   onAddProducto():void {
 
     // if( this.newProducto.invalid ) return;
 
-    const newProd = this.newProducto.value;
-    
-    this.productos.push(
-      this.fb.control( newProd, Validators.required )
-    );
+    this.productos.push(this.getNewProduct());
+    this.panelExpanded.push(true);
 
-    this.newProducto.reset();
+    // this.newProducto.reset();
 
   }
 
   onDeleteProducto( i: number ):void {
     this.productos.removeAt(i);
+    this.panelExpanded.splice(i, 1);
   }
 
   onSave():void {
 
-    if ( this.comercialForm.invalid ) {
-      this.comercialForm.markAllAsTouched();
-      return;
-    };
+    // if ( this.comercialForm.invalid ) {
+    //   this.comercialForm.markAllAsTouched();
+    //   return;
+    // };
 
-    console.log(this.comercialForm.value);
+    this.ComercialService.onSave(this.comercialForm.value).subscribe({
+      next: () => {
+        Swal.fire({
+          position: "top-end",
+          title: 'Solicitud Enviada',
+          showConfirmButton: false,
+          icon: 'success',
+          timerProgressBar: true,
+          timer: 1500,
+          didClose: () => window.scrollTo({ top: 0 })
+        });
+      },
+      error: (message) => {
+        Swal.fire({
+          title: 'Error',
+          text: message,
+          icon: 'error'
+        });
+      }
+    });
 
-    // this.ComercialService.onSave(this.comercialForm.value).subscribe({
-    //   next: () => {
-    //     Swal.fire({
-    //       position: "top-end",
-    //       title: 'Solicitud Enviada',
-    //       showConfirmButton: false,
-    //       icon: 'success',
-    //       timerProgressBar: true,
-    //       timer: 1500,
-    //       didClose: () => window.scrollTo({ top: 0 })
-    //     });
-    //   },
-    //   error: (message) => {
-    //     Swal.fire({
-    //       title: 'Error',
-    //       text: message,
-    //       icon: 'error'
-    //     });
-    //   }
-    // });
-
-    // this.comercialForm.reset(defaultForm);
+    this.comercialForm.reset(defaultForm);
 
   }
+
+  toggleData(i: number):void {
+    this.panelExpanded[i] = !this.panelExpanded[i];
+  }
+
+  buildDate():string {
+    const today = new Date();
+    return `Solicitud_Comercial_${today.getFullYear()}_${today.getMonth()}_${today.getDate()}_${today.getHours()}${today.getMinutes()}${today.getSeconds()}`;
+  }
+
 }

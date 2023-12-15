@@ -1,24 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environments';
-import { ComercialRequest } from '../interfaces/comercial-req.interface';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ComercialRequest } from 'src/app/reactive/interfaces/comercial-req.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ComercialService {
-  
+export class HistoryService {
+
   private readonly baseUrl: string = environment.baseUrl;
 
   private http = inject( HttpClient );
 
   constructor() { }
 
-  onSave( body: ComercialRequest ) {
+  findAllComercial(): Observable<ComercialRequest[]> {
 
     const url = `${ this.baseUrl }/comercial-req`;
 
-    return this.http.post<ComercialRequest>(url, body);
+    return this.http.get<ComercialRequest[]>(url);
 
   }
 

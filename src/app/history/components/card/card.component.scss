@@ -1,0 +1,39 @@
+@use '/src/variables.scss' as v;
+
+.campo-array {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid v.$secundario;
+  padding: 1rem;
+  margin: 0 0 5rem 0;
+}
+
+.close-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0 0;
+}
+
+.close-row:hover {
+  cursor: pointer;
+
+  .prod-btn {
+    color: v.$hover_link;
+  }
+
+}
+
+.title-row {
+  font-weight: 700;
+}
+
+.prod-btn {
+  color: v.$negro;
+  display: none;
+}
+
+@media ( min-width: v.$telefono ) {
+  .prod-btn {
+    display: flex;
+  }
+}

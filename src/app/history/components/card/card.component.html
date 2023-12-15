@@ -1,0 +1,102 @@
+<div class="campo-array">
+
+    <div class="close-row" (click)="toggleData()">
+        <div class="title-row">
+            <div>
+                {{ comercial.nombreSolicitud }}
+            </div>
+        </div>
+
+        <div>
+            <a class="prod-btn">
+                {{ cardExpanded ? 'Contraer' : 'Expandir' }}
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="cardExpanded">
+
+        <div *ngFor="let producto of comercial.productos">
+            <div>
+                Producto / Marca: {{ producto.producto }}
+            </div>
+            <div>
+                Cantidad: {{ producto.cantidad }}
+            </div>
+            <div>
+                Formato de Botella: {{ producto.formatoBotella }}
+            </div>
+            <div>
+                Tipo de Vino: {{ producto.tipoVino }}
+            </div>
+            <div>
+                Año Cosecha: {{ producto.anioCosecha }}
+            </div>
+            <div>
+                Cepa: {{ producto.cepa }}
+            </div>
+            <div>
+                Tipo de Cierre: {{ producto.tipoCierre }}
+            </div>
+            <div>
+                Etiqueta / Contra etiqueta: {{ producto.etiqueta }}
+            </div>
+        </div>
+
+        <div>
+            <!-- Datos de Envío -->
+            <div>
+                Fecha de envío: {{comercial.fechaEnvio}}
+            </div>
+            <div>
+                Centro de costo (C.C): {{comercial.centroCosto}}
+            </div>
+            <div>
+                Cuenta Contable (CTA): {{comercial.cuentaContable}}
+            </div>
+            <div>
+                Conceptos: {{comercial.conceptos}}
+            </div>
+            <div>
+                Tipo de Embalaje: {{comercial.tipoEmbalaje}}
+            </div>
+        </div>
+
+        <div>
+            <!-- Datos del Cliente -->
+            <div>
+                Nombre / Razón Social: {{comercial.clienteNombre}}
+            </div>
+            <div>
+                Fono: {{comercial.clienteFono}}
+            </div>
+            <div>
+                Email: {{comercial.clienteEmail}}
+            </div>
+            <div>
+                País: {{comercial.clientePais}}
+            </div>
+            <div>
+                Dirección: {{comercial.clienteDireccion}}
+            </div>
+        </div>
+
+        <div>
+            <!-- Datos del Despacho -->
+            <div>
+                Transporte / Despacho: {{comercial.despachoTransporte}}
+            </div>
+            <div>
+                Despachador: {{comercial.despachoRetira}}
+            </div>
+            <div>
+                AWB#: {{comercial.despachoAwb}}
+            </div>
+            <div>
+                Costo de Envío: {{comercial.despachoCosto}}
+            </div>
+        </div>
+
+    </div>
+
+</div>

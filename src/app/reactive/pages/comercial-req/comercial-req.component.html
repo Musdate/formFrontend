@@ -14,11 +14,6 @@
 
         <legend>Productos</legend>
 
-        <div class="prod-row">
-            <a class="prod-btn" (click)='onAddProducto()'>Nuevo Producto</a>
-        </div>
-
-
         <div formArrayName="productos" *ngFor="let producto of productos.controls; let i = index">
 
             <div class="campo-array" [formGroupName]="i">
@@ -114,6 +109,10 @@
 
         <br/>
 
+        </div>
+
+        <div class="prod-row">
+            <a class="prod-btn" (click)='onAddProducto()'>Nuevo Producto</a>
         </div>
 
     </fieldset>

@@ -11,6 +11,7 @@
             <a class="prod-btn">
                 {{ cardExpanded ? 'Contraer' : 'Expandir' }}
             </a>
+            <button (click)="generatePdf()">PDF</button>
         </div>
     </div>
 
@@ -41,6 +42,7 @@
             <div>
                 Etiqueta / Contra etiqueta: {{ producto.etiqueta }}
             </div>
+            <br>
         </div>
 
         <div>

@@ -32,6 +32,18 @@
   display: none;
 }
 
+.export-btn {
+  border: none;
+  background-color: v.$gris;
+  height: 3rem;
+  width: 6rem;
+}
+
+.export-btn:hover {
+  background-color: v.$hover_link;
+  color: v.$blanco;
+}
+
 @media ( min-width: v.$telefono ) {
   .prod-btn {
     display: flex;

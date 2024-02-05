@@ -12,44 +12,244 @@
 
     <fieldset>
 
-        <legend>Datos</legend>
+        <legend>Productos</legend>
+
+        <div formArrayName="productos" *ngFor="let producto of productos.controls; let i = index">
+
+            <div class="campo-array" [formGroupName]="i">
+
+                    <div class="close-row" (click)="toggleData(i)">
+                        <div class="title-row">
+                            <div *ngIf="producto.value['cantidad'] > 0; else tagCantidad">
+                                {{ producto.value['cantidad'] }} - {{ producto.value['producto'] }}
+                            </div>
+                             <ng-template #tagCantidad>
+                                {{ producto.value['producto'] }}
+                             </ng-template>
+                        </div>
+
+                        <div>
+                            <a class="prod-btn">
+                                {{ panelExpanded[i] ? 'Contraer' : 'Expandir' }}
+                            </a>
+    
+                            <a class="btn-del" *ngIf="i > 0" (click)="onDeleteProducto(i)">Eliminar</a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="panelExpanded[i]">
+
+                        <div class="campo">
+                            <label for="producto">Producto / Marca: </label>
+                            <div class="campo-interno">
+                                <input list="producto" formControlName="producto">
+                                <datalist id="producto">
+                                    <option *ngFor="let vino of productList" value="{{vino}}">
+                                </datalist>
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="cantidad">Cantidad: </label>
+                            <div class="campo-interno">
+                                <input id="cantidad" type="number" formControlName="cantidad" placeholder="Cantidad">
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="formatoBotella">Formato de Botella: </label>
+                            <div class="campo-interno">
+                                <input id="formatoBotella" type="text" formControlName="formatoBotella" placeholder="Formato de Botella">
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="tipoVino">Tipo de Vino: </label>
+                            <div class="campo-interno">
+                                <input id="tipoVino" type="text" formControlName="tipoVino" placeholder="Tipo de Vino">
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="anioCosecha">Año Cosecha: </label>
+                            <div class="campo-interno">
+                                <input id="anioCosecha" type="text" formControlName="anioCosecha" placeholder="Año Cosecha">
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="cepa">Cepa: </label>
+                            <div class="campo-interno">
+                                <input id="cepa" type="text" formControlName="cepa" placeholder="Cepa">
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="tipoCierre">Tipo de Cierre: </label>
+                            <div class="campo-radio">
+                                <input class="campo-radio-input" id="corcho" type="radio" name="tipoCierre" formControlName="tipoCierre" value="corcho" checked="checked">
+                                <label for="corcho">Corcho </label>
+                            </div>
+                            <div class="campo-radio">
+                                <input class="campo-radio-input" id="rosca" type="radio" name="tipoCierre" formControlName="tipoCierre" value="rosca">
+                                <label for="rosca">Rosca </label>
+                            </div>
+                        </div>
+    
+                        <div class="campo">
+                            <label for="etiqueta">Etiqueta / Contra etiqueta: </label>
+                            <div class="campo-interno">
+                                <input id="etiqueta" type="text" formControlName="etiqueta" placeholder="Etiqueta / Contra etiqueta">
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+
+        <br/>
+
+        </div>
+
+        <div class="prod-row">
+            <a class="prod-btn" (click)='onAddProducto()'>Nuevo Producto</a>
+        </div>
+
+    </fieldset>
+
+    
+    <fieldset>
+
+        <legend>Datos de Envío</legend>
 
         <div class="campo">
-            <label for="solicitante">Solicitante: </label>
+            <label for="fechaEnvio">Fecha de envío: </label>
             <div class="campo-interno">
-                <input id="solicitante" type="text" formControlName="solicitante" placeholder="Solicitante">
-                <span *ngIf="isValidField('solicitante')" class="text-danger">
-                    {{ getFieldError('solicitante') }}
+                <input id="fechaEnvio" type="text" formControlName="fechaEnvio" placeholder="Fecha de envío">
+                <span *ngIf="isValidField('fechaEnvio')" class="text-danger">
+                    {{ getFieldError('fechaEnvio') }}
                 </span>
             </div>
         </div>
 
         <div class="campo">
-            <label for="producto">Producto / Vino: </label>
+            <label for="centroCosto">Centro de costo (C.C): </label>
             <div class="campo-interno">
-                <input id="producto" type="text" formControlName="producto" placeholder="Producto / Vino">
-                <span *ngIf="isValidField('producto')" class="text-danger">
-                    {{ getFieldError('producto') }}
+                <input id="centroCosto" type="text" formControlName="centroCosto" placeholder="Centro de costo (C.C)">
+                <span *ngIf="isValidField('centroCosto')" class="text-danger">
+                    {{ getFieldError('centroCosto') }}
                 </span>
             </div>
         </div>
 
         <div class="campo">
-            <label for="fechaEntrega">Fecha de Entrega: </label>
+            <label for="cuentaContable">Cuenta Contable (CTA): </label>
             <div class="campo-interno">
-                <input id="fechaEntrega" type="date" formControlName="fechaEntrega" placeholder="Fecha de Entrega">
-                <span *ngIf="isValidField('fechaEntrega')" class="text-danger">
-                    {{ getFieldError('fechaEntrega') }}
+                <input id="cuentaContable" type="text" formControlName="cuentaContable" placeholder="Cuenta Contable (CTA)">
+                <span *ngIf="isValidField('cuentaContable')" class="text-danger">
+                    {{ getFieldError('cuentaContable') }}
                 </span>
             </div>
         </div>
 
         <div class="campo">
-            <label for="observaciones">Observaciones: </label>
+            <label for="conceptos">Conceptos: </label>
             <div class="campo-interno">
-                <textarea id="observaciones" type="text" formControlName="observaciones" placeholder="Observaciones" cols="20" rows="10"></textarea>
-                <span *ngIf="isValidField('observaciones')" class="text-danger">
-                    {{ getFieldError('observaciones') }}
+                <input id="conceptos" type="text" formControlName="conceptos" placeholder="Conceptos">
+                <span *ngIf="isValidField('conceptos')" class="text-danger">
+                    {{ getFieldError('conceptos') }}
+                </span>
+            </div>
+        </div>
+    
+    </fieldset>
+
+    <fieldset>
+
+        <legend>Datos del Cliente</legend>
+
+        <div class="campo">
+            <label for="clienteNombre">Nombre / Razón Social: </label>
+            <div class="campo-interno">
+                <input id="clienteNombre" type="text" formControlName="clienteNombre" placeholder="Nombre o Razón Social">
+                <span *ngIf="isValidField('clienteNombre')" class="text-danger">
+                    {{ getFieldError('clienteNombre') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="clienteFono">Fono: </label>
+            <div class="campo-interno">
+                <input id="clienteFono" type="tel" formControlName="clienteFono" placeholder="Fono del Cliente">
+                <span *ngIf="isValidField('clienteFono')" class="text-danger">
+                    {{ getFieldError('clienteFono') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="clienteEmail">Email: </label>
+            <div class="campo-interno">
+                <input id="clienteEmail" type="email" formControlName="clienteEmail" placeholder="Email del Cliente">
+                <span *ngIf="isValidField('clienteEmail')" class="text-danger">
+                    {{ getFieldError('clienteEmail') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="clienteDireccion">Dirección: </label>
+            <div class="campo-interno">
+                <input id="clienteDireccion" type="text" formControlName="clienteDireccion" placeholder="Dirección del Cliente">
+                <span *ngIf="isValidField('clienteDireccion')" class="text-danger">
+                    {{ getFieldError('clienteDireccion') }}
+                </span>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+
+        <legend>Datos del Despacho</legend>
+
+        <div class="campo">
+            <label for="despachoTransporte">Transporte / Despacho: </label>
+            <div class="campo-interno">
+                <input id="despachoTransporte" type="text" formControlName="despachoTransporte" placeholder="Medio de Transporte / Despacho">
+                <span *ngIf="isValidField('despachoTransporte')" class="text-danger">
+                    {{ getFieldError('despachoTransporte') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="despachoRetira">Despachador: </label>
+            <div class="campo-interno">
+                <input id="despachoRetira" type="text" formControlName="despachoRetira" placeholder="Nombre de la Persona que Retira">
+                <span *ngIf="isValidField('despachoRetira')" class="text-danger">
+                    {{ getFieldError('despachoRetira') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="despachoAwb">AWB#: </label>
+            <div class="campo-interno">
+                <input id="despachoAwb" type="text" formControlName="despachoAwb" placeholder="AWB#">
+                <span *ngIf="isValidField('despachoAwb')" class="text-danger">
+                    {{ getFieldError('despachoAwb') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="despachoCosto">Costo de Envío: </label>
+            <div class="campo-interno">
+                <input id="despachoCosto" type="number" formControlName="despachoCosto" placeholder="Costo de Envío">
+                <span *ngIf="isValidField('despachoCosto')" class="text-danger">
+                    {{ getFieldError('despachoCosto') }}
                 </span>
             </div>
         </div>

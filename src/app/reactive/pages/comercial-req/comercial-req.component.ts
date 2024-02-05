@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComercialService } from '../../services/comercial.service';
 import Swal from 'sweetalert2';
+import { ProductService } from '../../services/product.service';
+import { Vino } from '../../interfaces/product.interface';
 
 const defaultForm = {
   nombreSolicitud: '',
@@ -32,7 +34,8 @@ const defaultForm = {
 
 @Component({
   templateUrl: './comercial-req.component.html',
-  styleUrls: ['../../layouts/request-layout/request-layout.component.scss']
+  styleUrls: ['../../layouts/request-layout/request-layout.component.scss'],
+  host: {'collision-id': 'ComercialRequest'},
 })
 export class ComercialReqComponent {
   
@@ -57,37 +60,20 @@ export class ComercialReqComponent {
     despachoCosto: [0, [], []],
   });
 
-  public productsList = [
-    {id: 'ER_Icone', desc: 'Escudo Rojo Icone'},
-    {id: 'ER_Origine', desc: 'Escudo Rojo Origine'},
-    {id: 'ER_Grande_R', desc: 'Escudo Rojo Grande Réserve'},
-    {id: 'ER_Reserve', desc: 'Escudo Rojo Réserve'},
-    {id: 'Mapu_GR', desc: 'Mapu Gran Reserva'},
-    {id: 'Mapu_R', desc: 'Mapu Reserva'},
-    {id: 'Mapu', desc: 'Mapu'},
-    {id: 'Andes_GR', desc: 'Mas Andes Gran Reserva'},
-    {id: 'Andes_R', desc: 'Mas Andes Reserva < Cambio'},
-    {id: 'Andes', desc: 'Mas Andes'},
-    {id: 'Anderra', desc: 'Anderra'},
-    {id: 'Reserva', desc: 'Reserva'},
-    {id: 'Reserva_E', desc: 'Reserva Especial'},
-    {id: 'Mapa_R', desc: 'Mapa Reserva'},
-    {id: 'Mapa', desc: 'Mapa'},
-    {id: 'Varietal_B', desc: 'Varietal Beige'},
-    {id: 'ND_Andes', desc: 'ND23 Mas Andes'},
-    {id: 'ND_Andes_R', desc: 'ND23 Mas Andes Reserva'},
-    {id: 'ND_Andes_GR', desc: 'ND23 Mas Andes Gran Reserva'},
-    {id: 'ND_Andes_PLTO', desc: 'ND23 Mas Andes PLTO'}
-  ];
-
   private ComercialService = inject( ComercialService );
 
-  constructor ( private fb: FormBuilder ) { }
+  constructor (
+    private fb: FormBuilder,
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
     this.comercialForm.reset(defaultForm);
-    this.comercialForm.controls['nombreSolicitud'].setValue(this.buildDate())
     this.productos.push(this.getNewProduct());
+  }
+
+  get productList(): Vino[] {
+    return this.productService.vinos;
   }
 
   get productos() {
@@ -108,7 +94,7 @@ export class ComercialReqComponent {
 
     const errors = this.comercialForm.controls[field].errors || {};
 
-    document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
+    // document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
 
     for (const key of Object.keys(errors)) {
       switch(key) {
@@ -158,6 +144,8 @@ export class ComercialReqComponent {
     //   return;
     // };
 
+    this.comercialForm.controls['nombreSolicitud'].setValue(this.buildDate());
+
     this.ComercialService.onSave(this.comercialForm.value).subscribe({
       next: () => {
         Swal.fire({
@@ -189,7 +177,14 @@ export class ComercialReqComponent {
 
   buildDate():string {
     const today = new Date();
-    return `Solicitud_Comercial_${today.getFullYear()}_${today.getMonth()}_${today.getDate()}_${today.getHours()}${today.getMinutes()}${today.getSeconds()}`;
+    const year  = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day   = ('0' + today.getDate()).slice(-2);
+    const hour  = ('0' + today.getHours()).slice(-2);
+    const min   = ('0' + today.getMinutes()).slice(-2);
+    const sec   = ('0' + today.getSeconds()).slice(-2);
+
+    return `Solicitud_Generica_${year}_${month}_${day}_${hour}${min}${sec}`;
   }
 
 }

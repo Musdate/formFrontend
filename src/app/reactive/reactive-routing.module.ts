@@ -10,10 +10,10 @@ const routes: Routes = [
     path: '',
     component: RequestLayoutComponent,
     children: [
-      { path: 'internal', component: InternalReqComponent },
       { path: 'comercial', component: ComercialReqComponent },
+      { path: 'internal', component: InternalReqComponent },
       { path: 'generic', component: GenericReqComponent },
-      { path: '**', redirectTo: 'internal' }
+      { path: '**', redirectTo: 'comercial' }
     ]
   }
 ];

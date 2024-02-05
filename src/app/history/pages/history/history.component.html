@@ -9,10 +9,38 @@
 
 <div class="container">
 
-    <div *ngFor="let comercial of history">
+    <div class="filter">
+        <label class="filter-label" for="solicitud">Tipo Solicitud</label>
+        <select class="filter-select" id="solicitud" [(ngModel)]="solicitudSelected">
+            <option value=""> -- Seleccione -- </option>
+            <option value="SC"> Solicitud Comercial </option>
+            <option value="SI"> Solicitud Interna </option>
+            <option value="SG"> Solicitud Genérica </option>
+        </select>
+    </div>
 
-        <app-card [comercial]="comercial" />
-    
+    <div *ngIf="solicitudSelected == 'SC'">
+        <div *ngFor="let solicitud of comercialReq">
+
+            <app-card [solicitud]="solicitud" [tipo]="solicitudSelected" />
+
+        </div>
+    </div>
+
+    <div *ngIf="solicitudSelected == 'SI'">
+        <div *ngFor="let solicitud of internalReq">
+
+            <app-card [solicitud]="solicitud" [tipo]="solicitudSelected" />
+
+        </div>
+    </div>
+
+    <div *ngIf="solicitudSelected == 'SG'">
+        <div *ngFor="let solicitud of genericReq">
+
+            <app-card [solicitud]="solicitud" [tipo]="solicitudSelected" />
+
+        </div>
     </div>
 
 </div>

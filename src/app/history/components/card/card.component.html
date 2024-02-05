@@ -3,7 +3,7 @@
     <div class="close-row" (click)="toggleData()">
         <div class="title-row">
             <div>
-                {{ comercial.nombreSolicitud }}
+                {{ solicitud.nombreSolicitud }}
             </div>
         </div>
 
@@ -11,13 +11,13 @@
             <a class="prod-btn">
                 {{ cardExpanded ? 'Contraer' : 'Expandir' }}
             </a>
-            <button (click)="generatePdf()">PDF</button>
+            <button (click)="generatePdf()" class="export-btn">PDF</button>
         </div>
     </div>
 
     <div *ngIf="cardExpanded">
 
-        <div *ngFor="let producto of comercial.productos">
+        <div *ngFor="let producto of solicitud.productos">
             <div>
                 Producto / Marca: {{ producto.producto }}
             </div>
@@ -48,54 +48,54 @@
         <div>
             <!-- Datos de Envío -->
             <div>
-                Fecha de envío: {{comercial.fechaEnvio}}
+                Fecha de envío: {{solicitud.fechaEnvio}}
             </div>
             <div>
-                Centro de costo (C.C): {{comercial.centroCosto}}
+                Centro de costo (C.C): {{solicitud.centroCosto}}
             </div>
             <div>
-                Cuenta Contable (CTA): {{comercial.cuentaContable}}
+                Cuenta Contable (CTA): {{solicitud.cuentaContable}}
             </div>
             <div>
-                Conceptos: {{comercial.conceptos}}
+                Conceptos: {{solicitud.conceptos}}
             </div>
-            <div>
-                Tipo de Embalaje: {{comercial.tipoEmbalaje}}
+            <div *ngIf="tipo == 'SC'">
+                Tipo de Embalaje: {{solicitud.tipoEmbalaje}}
             </div>
         </div>
 
         <div>
             <!-- Datos del Cliente -->
             <div>
-                Nombre / Razón Social: {{comercial.clienteNombre}}
+                Nombre / Razón Social: {{solicitud.clienteNombre}}
             </div>
             <div>
-                Fono: {{comercial.clienteFono}}
+                Fono: {{solicitud.clienteFono}}
             </div>
             <div>
-                Email: {{comercial.clienteEmail}}
+                Email: {{solicitud.clienteEmail}}
+            </div>
+            <div *ngIf="tipo == 'SC'">
+                País: {{solicitud.clientePais}}
             </div>
             <div>
-                País: {{comercial.clientePais}}
-            </div>
-            <div>
-                Dirección: {{comercial.clienteDireccion}}
+                Dirección: {{solicitud.clienteDireccion}}
             </div>
         </div>
 
         <div>
             <!-- Datos del Despacho -->
             <div>
-                Transporte / Despacho: {{comercial.despachoTransporte}}
+                Transporte / Despacho: {{solicitud.despachoTransporte}}
             </div>
             <div>
-                Despachador: {{comercial.despachoRetira}}
+                Despachador: {{solicitud.despachoRetira}}
             </div>
             <div>
-                AWB#: {{comercial.despachoAwb}}
+                AWB#: {{solicitud.despachoAwb}}
             </div>
             <div>
-                Costo de Envío: {{comercial.despachoCosto}}
+                Costo de Envío: {{solicitud.despachoCosto}}
             </div>
         </div>
 

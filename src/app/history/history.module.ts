@@ -6,6 +6,7 @@ import { HistoryComponent } from './pages/history/history.component';
 import { SharedModule } from '../shared/shared.module';
 import { HistoryLayoutComponent } from './layouts/history-layout/history-layout.component';
 import { CardComponent } from './components/card/card.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CardComponent } from './components/card/card.component';
   imports: [
     CommonModule,
     HistoryRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports: [
     CardComponent

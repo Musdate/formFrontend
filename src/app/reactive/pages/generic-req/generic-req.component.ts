@@ -77,7 +77,6 @@ export class GenericReqComponent {
   }
 
   isValidField( field: string ): boolean | null {
-    console.log(field, this.genericForm.controls[field].errors && this.genericForm.controls[field].touched);
     return this.genericForm.controls[field].errors && this.genericForm.controls[field].touched;
   }
 
@@ -90,8 +89,6 @@ export class GenericReqComponent {
     if ( !this.genericForm.controls[field] ) return null;
 
     const errors = this.genericForm.controls[field].errors || {};
-
-    console.log(errors);
 
     // document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
 

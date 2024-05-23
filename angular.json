@@ -20,7 +20,8 @@
 						"allowedCommonJsDependencies": [
 							"sweetalert2",
 							"pdfmake/build/pdfmake",
-							"pdfmake/build/vfs_fonts"
+							"pdfmake/build/vfs_fonts",
+							"file-saver"
 						],
 						"outputPath": "dist/form-frontend",
 						"index": "src/index.html",
@@ -104,5 +105,8 @@
 				}
 			}
 		}
-	}
+  },
+  "cli": {
+    "analytics": false
+  }
 }

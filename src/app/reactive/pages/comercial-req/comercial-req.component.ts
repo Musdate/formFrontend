@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComercialService } from '../../services/comercial.service';
-import Swal from 'sweetalert2';
 import { ProductService } from '../../services/product.service';
 import { Vino } from '../../interfaces/product.interface';
+import Swal from 'sweetalert2';
 
 const defaultForm = {
   nombreSolicitud: '',
@@ -184,7 +184,7 @@ export class ComercialReqComponent {
     const min   = ('0' + today.getMinutes()).slice(-2);
     const sec   = ('0' + today.getSeconds()).slice(-2);
 
-    return `Solicitud_Generica_${year}_${month}_${day}_${hour}${min}${sec}`;
+    return `Solicitud_Comercial_${year}_${month}_${day}_${hour}${min}${sec}`;
   }
 
 }

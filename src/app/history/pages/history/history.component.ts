@@ -24,15 +24,15 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.historyService.findAllComercial().subscribe(
+    this.historyService.findAllComercial('nombreSolicitud', 'desc').subscribe(
       comercialReq => this.comercialReq = comercialReq
     );
 
-    this.historyService.findAllInternal().subscribe(
+    this.historyService.findAllInternal('nombreSolicitud', 'desc').subscribe(
       internalReq => this.internalReq = internalReq
     );
     
-    this.historyService.findAllGeneric().subscribe(
+    this.historyService.findAllGeneric('nombreSolicitud', 'desc').subscribe(
       genericReq => this.genericReq = genericReq
     );
 

@@ -18,20 +18,19 @@ export class HistoryService {
 
   constructor(private http: HttpClient) { }
 
-  findAllComercial(): Observable<ComercialRequest[]> {
+  findAllComercial(sortBy: string, sortOrder: 'asc' | 'desc' = 'desc'): Observable<ComercialRequest[]> {
     const url = `${ this.baseUrl }/comercial-req`;
-    return this.http.get<ComercialRequest[]>(url);
+    return this.http.get<ComercialRequest[]>(`${url}?sortBy=${sortBy}&sortOrder=${sortOrder}`);
   }
 
-  findAllInternal(): Observable<InternalRequest[]> {
+  findAllInternal(sortBy: string, sortOrder: 'asc' | 'desc' = 'desc'): Observable<InternalRequest[]> {
     const url = `${ this.baseUrl }/internal-req`;
-    return this.http.get<InternalRequest[]>(url);
-
+    return this.http.get<InternalRequest[]>(`${url}?sortBy=${sortBy}&sortOrder=${sortOrder}`);
   }
 
-  findAllGeneric(): Observable<GenericRequest[]> {
+  findAllGeneric(sortBy: string, sortOrder: 'asc' | 'desc' = 'desc'): Observable<GenericRequest[]> {
     const url = `${ this.baseUrl }/generic-req`;
-    return this.http.get<GenericRequest[]>(url);
+    return this.http.get<GenericRequest[]>(`${url}?sortBy=${sortBy}&sortOrder=${sortOrder}`);
   }
 
   generatePDF(solicitud: ComercialRequest | InternalRequest | GenericRequest) {

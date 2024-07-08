@@ -118,6 +118,16 @@
         <legend>Datos de Envío</legend>
 
         <div class="campo">
+            <label for="solicitante">Solicitante: </label>
+            <div class="campo-interno">
+                <input id="solicitante" type="text" formControlName="solicitante" placeholder="Nombre Solicitante">
+                <span *ngIf="isValidField('solicitante')" class="text-danger">
+                    {{ getFieldError('solicitante') }}
+                </span>
+            </div>
+        </div>
+
+        <div class="campo">
             <label for="fechaEnvio">Fecha de envío: </label>
             <div class="campo-interno">
                 <input id="fechaEnvio" type="text" formControlName="fechaEnvio" placeholder="Fecha de envío">

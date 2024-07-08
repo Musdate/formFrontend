@@ -16,6 +16,7 @@ const defaultForm = {
     tipoCierre: '',
     etiqueta: '',
   }],
+  solicitante: '',
   fechaEnvio: '',
   centroCosto: '',
   cuentaContable: '',
@@ -42,6 +43,7 @@ export class GenericReqComponent {
   public genericForm: FormGroup = this.fb.group({
     nombreSolicitud: ['', [], []],
     productos: this.fb.array([]),
+    solicitante: ['', [], []],
     fechaEnvio: ['', [], []],
     centroCosto: ['', [], []],
     cuentaContable: ['', [], []],
@@ -90,8 +92,6 @@ export class GenericReqComponent {
 
     const errors = this.genericForm.controls[field].errors || {};
 
-    // document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
-
     for (const key of Object.keys(errors)) {
       switch(key) {
         case 'required':
@@ -119,12 +119,8 @@ export class GenericReqComponent {
 
   onAddProducto():void {
 
-    // if( this.newProducto.invalid ) return;
-
     this.productos.push(this.getNewProduct());
     this.panelExpanded.push(true);
-
-    // this.newProducto.reset();
 
   }
 
@@ -134,11 +130,6 @@ export class GenericReqComponent {
   }
 
   onSave():void {
-
-    // if ( this.genericForm.invalid ) {
-    //   this.genericForm.markAllAsTouched();
-    //   return;
-    // };
 
     this.genericForm.controls['nombreSolicitud'].setValue(this.buildDate());
 

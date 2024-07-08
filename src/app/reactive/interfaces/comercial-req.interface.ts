@@ -4,6 +4,7 @@ export interface ComercialRequest {
     _id:                string;
     nombreSolicitud:    string;
     productos:          Product[];
+    solicitante:        string;
     fechaEnvio:         string;
     centroCosto:        string;
     cuentaContable:     string;

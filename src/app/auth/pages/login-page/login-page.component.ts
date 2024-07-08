@@ -22,8 +22,17 @@ export class LoginPageComponent {
   login() {
     const { email, password } = this.myForm.value;
 
+    if ( this.myForm.invalid ) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Credenciales incorrectas.',
+        icon: 'error'
+      });
+      return;
+    }
+
     this.AuthService.login(email, password).subscribe({
-      next: () => this.router.navigateByUrl('/dashboard'),
+      next: () => { this.router.navigateByUrl('/dashboard') },
       error: (message) => {
         Swal.fire({
           title: 'Error',

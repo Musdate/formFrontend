@@ -16,6 +16,7 @@ const defaultForm = {
     tipoCierre: '',
     etiqueta: '',
   }],
+  solicitante: '',
   fechaEnvio: '',
   centroCosto: '',
   cuentaContable: '',
@@ -42,6 +43,7 @@ export class InternalReqComponent implements OnInit {
   public internalForm: FormGroup = this.fb.group({
     nombreSolicitud: ['', [], []],
     productos: this.fb.array([]),
+    solicitante: ['', [], []],
     fechaEnvio: ['', [], []],
     centroCosto: ['', [], []],
     cuentaContable: ['', [], []],
@@ -90,8 +92,6 @@ export class InternalReqComponent implements OnInit {
 
     const errors = this.internalForm.controls[field].errors || {};
 
-    // document.getElementById(field)?.scrollIntoView({ behavior: "smooth" });
-
     for (const key of Object.keys(errors)) {
       switch(key) {
         case 'required':
@@ -119,12 +119,8 @@ export class InternalReqComponent implements OnInit {
 
   onAddProducto():void {
 
-    // if( this.newProducto.invalid ) return;
-
     this.productos.push(this.getNewProduct());
     this.panelExpanded.push(true);
-
-    // this.newProducto.reset();
 
   }
 
@@ -134,11 +130,6 @@ export class InternalReqComponent implements OnInit {
   }
 
   onSave():void {
-
-    // if ( this.internalForm.invalid ) {
-    //   this.internalForm.markAllAsTouched();
-    //   return;
-    // };
 
     this.internalForm.controls['nombreSolicitud'].setValue(this.buildDate());
 
